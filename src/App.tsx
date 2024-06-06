@@ -6,6 +6,7 @@ import { useTonConnect } from './hooks/useTonConnect';
 import { useState } from 'react';
 import { Ticket } from './components/Ticket';
 import { Page, TicketEntity } from './types/types';
+import BuyTickets from './pages/BuyTickets';
 
 function App() {
   const { network } = useTonConnect();
@@ -18,12 +19,20 @@ function App() {
     setTicket(ticket);
   };
 
+  const buyTickets = () => {
+    setPage("buyTickets")
+  }
+
   const CurrentPage = () => {
     switch (page) {
-      case 'myTickets':
-        return <Mytickets />;
-      case 'ticket':
+      case "myTickets":
+        return <Mytickets openTicket={openTicket} />;
+      case "ticket":
         return ticket ? <Ticket {...ticket} /> : null;
+      case "buyTickets":
+        return <BuyTickets />;
+      default:
+        return null
     }
   };
 
@@ -39,7 +48,7 @@ function App() {
           : 'N/A'}{' '}
       </header>
 
-      {<CurrentPage />}
+      <CurrentPage />
 
       <footer className="flex gap-4 p-2">
         <button

@@ -1,7 +1,9 @@
 import { Ticket } from '../components/Ticket';
 import { TicketStatus, TicketEntity } from '../types/types';
 
-type Props = {};
+type Props = {
+  openTicket: (ticket: TicketEntity) => void
+};
 
 const ticket: TicketEntity = {
   name: 'Ticket',
@@ -13,7 +15,7 @@ const activeTickets = new Array(2).fill(ticket);
 const tickets = new Array(2).fill({ ...ticket, isActive: false });
 
 const Mytickets: React.FC<Props> = (props: Props) => {
-  const {} = props;
+  const { openTicket } = props;
 
   return (
     <div className="flex flex-col gap-4 flex-1 overflow-auto">

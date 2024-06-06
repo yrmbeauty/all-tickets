@@ -2,7 +2,7 @@ export enum TicketStatus {
   'activated',
   'own'
 }
-export type Page = "myTickets" | "ticket"
+export type Page = "myTickets" | "ticket" | "buyTickets"
 
 export type TicketEntity = {
   name: string;
