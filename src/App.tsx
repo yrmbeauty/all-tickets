@@ -7,26 +7,25 @@ import { useState } from 'react';
 import { Ticket } from './components/Ticket';
 import { Page, TicketEntity } from './types/types';
 
-
 function App() {
   const { network } = useTonConnect();
-  
+
   const [ticket, setTicket] = useState<TicketEntity>();
-  const [page, setPage] = useState<Page>("myTickets");
-  
+  const [page, setPage] = useState<Page>('myTickets');
+
   const openTicket = (ticket: TicketEntity) => {
-    setPage("ticket")
+    setPage('ticket');
     setTicket(ticket);
-  }
+  };
 
   const CurrentPage = () => {
     switch (page) {
-      case "myTickets":
+      case 'myTickets':
         return <Mytickets />;
-      case "ticket":
+      case 'ticket':
         return ticket ? <Ticket {...ticket} /> : null;
     }
-  }
+  };
 
   return (
     <>
@@ -42,8 +41,19 @@ function App() {
 
       {<CurrentPage />}
 
-      <footer className="">
-        <button className="btn"></button>
+      <footer className="flex gap-4 p-2">
+        <button
+          className={`btn flex-1 btn-info ${page === 'myTickets' ? 'pointer-events-none' : 'btn-outline'}`}
+        >
+          My tickets
+        </button>
+        <button
+          // disabled={page === 'buy'}
+          className="btn flex-1 btn-outline btn-success"
+          // onClick={() => buyTickets()}
+        >
+          Buy ticket
+        </button>
       </footer>
     </>
   );

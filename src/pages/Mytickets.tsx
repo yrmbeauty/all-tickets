@@ -19,7 +19,7 @@ const Mytickets: React.FC<Props> = (props: Props) => {
     <div className="flex flex-col gap-4 flex-1 overflow-auto">
       <div>
         <h1 className="text-lg">Active</h1>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-4 flex-wrap justify-evenly">
           {activeTickets.map((ticket) => (
             <Ticket {...ticket} />
           ))}
@@ -28,7 +28,7 @@ const Mytickets: React.FC<Props> = (props: Props) => {
 
       <div>
         <h1 className="text-lg">List</h1>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-4 flex-wrap justify-evenly">
           {tickets.map((ticket) => (
             <Ticket {...ticket} />
           ))}
