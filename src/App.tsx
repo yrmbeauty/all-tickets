@@ -3,9 +3,30 @@ import Mytickets from './pages/Mytickets';
 import './App.css';
 import { CHAIN, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnect } from './hooks/useTonConnect';
+import { useState } from 'react';
+import { Ticket } from './components/Ticket';
+import { Page, TicketEntity } from './types/types';
+
 
 function App() {
   const { network } = useTonConnect();
+  
+  const [ticket, setTicket] = useState<TicketEntity>();
+  const [page, setPage] = useState<Page>("myTickets");
+  
+  const openTicket = (ticket: TicketEntity) => {
+    setPage("ticket")
+    setTicket(ticket);
+  }
+
+  const CurrentPage = () => {
+    switch (page) {
+      case "myTickets":
+        return <Mytickets />;
+      case "ticket":
+        return ticket ? <Ticket {...ticket} /> : null;
+    }
+  }
 
   return (
     <>
@@ -19,7 +40,7 @@ function App() {
           : 'N/A'}{' '}
       </header>
 
-      <Mytickets />
+      {<CurrentPage />}
 
       <footer className="">
         <button className="btn"></button>
