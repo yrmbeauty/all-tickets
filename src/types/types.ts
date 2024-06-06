@@ -1,12 +1,10 @@
-declare namespace Entity {
-  enum TicketStatus {
-    "activated",
-    "own"
-  }
-
-  type Ticket = {
-    name: string;
-    description: string;
-    status: TicketStatus
-  }
+export enum TicketStatus {
+  'activated',
+  'own'
 }
+
+export type TicketEntity = {
+  name: string;
+  description: string;
+  status: TicketStatus;
+};

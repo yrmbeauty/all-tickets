@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <header className="flex gap-4 items-center">
+      <header className="flex gap-4 items-center p-2">
         <TonConnectButton className="ml-auto" />
         {network
           ? // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison

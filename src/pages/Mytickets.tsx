@@ -1,17 +1,18 @@
 import { Ticket } from '../components/Ticket';
+import { TicketStatus, TicketEntity } from '../types/types';
 
 type Props = {};
 
-const ticket: Entity.Ticket = {
+const ticket: TicketEntity = {
   name: 'Ticket',
   description: 'Concert description',
-  status: Entity.TicketStatus.activated
+  status: TicketStatus.activated
 };
 
 const activeTickets = new Array(2).fill(ticket);
 const tickets = new Array(2).fill({ ...ticket, isActive: false });
 
-const Mytickets: React.FC<Props> = (props) => {
+const Mytickets: React.FC<Props> = (props: Props) => {
   const {} = props;
 
   return (
