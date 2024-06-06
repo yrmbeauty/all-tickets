@@ -1,33 +1,33 @@
-import { useState } from "react";
-import Counter from "../contracts/counter";
-import { useTonClient } from "./useTonClient";
-import { useAsyncInitialize } from "./useAsyncInitialize";
-import { useTonConnect } from "./useTonConnect";
-import { Address, OpenedContract } from "ton-core";
-import { useQuery } from "@tanstack/react-query";
-import { CHAIN } from "@tonconnect/protocol";
+import Counter from '../contracts/counter';
+import { useTonClient } from './useTonClient';
+import { useAsyncInitialize } from './useAsyncInitialize';
+import { useTonConnect } from './useTonConnect';
+import { Address, OpenedContract } from 'ton-core';
+import { useQuery } from '@tanstack/react-query';
+import { CHAIN } from '@tonconnect/protocol';
 
 export function useCounterContract() {
   const { client } = useTonClient();
   const { sender, network } = useTonConnect();
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   const counterContract = useAsyncInitialize(async () => {
     if (!client) return;
     const contract = new Counter(
       Address.parse(
         network === CHAIN.MAINNET
-          ? "EQBPEDbGdwaLv1DKntg9r6SjFIVplSaSJoJ-TVLe_2rqBOmH"
-          : "EQBYLTm4nsvoqJRvs_L-IGNKwWs5RKe19HBK_lFadf19FUfb"
+          ? 'EQBPEDbGdwaLv1DKntg9r6SjFIVplSaSJoJ-TVLe_2rqBOmH'
+          : 'EQBYLTm4nsvoqJRvs_L-IGNKwWs5RKe19HBK_lFadf19FUfb'
       ) // replace with your address from tutorial 2 step 8
     );
     return client.open(contract) as OpenedContract<Counter>;
   }, [client]);
 
   const { data, isFetching } = useQuery(
-    ["counter"],
+    ['counter'],
     async () => {
       if (!counterContract) return null;
-      return (await counterContract!.getCounter()).toString();
+      return (await counterContract.getCounter()).toString();
     },
     { refetchInterval: 3000 }
   );
@@ -37,6 +37,6 @@ export function useCounterContract() {
     address: counterContract?.address.toString(),
     sendIncrement: () => {
       return counterContract?.sendIncrement(sender);
-    },
+    }
   };
 }

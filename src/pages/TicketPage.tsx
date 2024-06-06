@@ -1,9 +1,9 @@
 import { TicketEntity } from '../types/types';
 
-type Props = {} & TicketEntity;
+type Props = TicketEntity;
 
 const TicketPage: React.FC<Props> = props => {
-  const { name, description, status } = props;
+  const { name, description } = props;
 
   return (
     <div className="flex flex-1 flex-col overflow-scroll">
