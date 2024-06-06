@@ -1,4 +1,4 @@
-import { Ticket } from '../components/Ticket';
+import TicketsList from '../components/TicketsList';
 import { TicketEntity } from '../types/types';
 
 interface Props {
@@ -11,11 +11,7 @@ const BrowseTickets: React.FC<Props> = props => {
 
   return (
     <div className="flex flex-col gap-4 flex-1 overflow-auto">
-      <div className="flex gap-4 flex-wrap justify-evenly">
-        {sellableTickets.map(ticket => (
-          <Ticket {...ticket} onClick={() => openTicket(ticket)} />
-        ))}
-      </div>
+      <TicketsList tickets={sellableTickets} onTicketClick={openTicket} />
     </div>
   );
 };
