@@ -1,6 +1,7 @@
 export enum TicketStatus {
-  'activated',
-  'own'
+  'active',
+  'owned',
+  'sellable'
 }
 export type Page = 'myTickets' | 'ticket' | 'browseTickets';
 
