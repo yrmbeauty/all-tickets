@@ -2,10 +2,10 @@ import { Ticket } from '../components/Ticket'
 
 type Props = {}
 
-const ticket = {
+const ticket: Entity.Ticket = {
   name: 'Ticket',
   description: 'Concert description',
-  isActive: true,
+  status: Entity.TicketStatus.activated,
 }
 
 const activeTickets = new Array(2).fill(ticket)
