@@ -21,7 +21,7 @@ const Mytickets: React.FC<Props> = props => {
       <h1 className="text-lg">List</h1>
       <div>{tickets.map((ticket) => <Ticket {...ticket} />)}</div>
     </div>
-   )
+  )
 };
 
 export default Mytickets;

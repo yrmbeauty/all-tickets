@@ -9,7 +9,9 @@ function App() {
   // const { network } = useTonConnect();;
 
   return (
-    <Mytickets />
+    <div>
+      <Mytickets />
+    </div>
   );
 }
 
