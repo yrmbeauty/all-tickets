@@ -1,9 +1,11 @@
 import { TicketEntity, TicketStatus } from '../types/types';
 
-type Props = {} & TicketEntity;
+type Props = {
+  onClick: () => void;
+} & TicketEntity;
 
-export const Ticket: React.FC<Props> = (props) => {
-  const { status, name, description } = props;
+export const Ticket: React.FC<Props> = props => {
+  const { status, name, description, onClick } = props;
   return (
     <div className="card w-96 bg-base-100 shadow-xl image-full">
       <figure>
@@ -16,7 +18,7 @@ export const Ticket: React.FC<Props> = (props) => {
         <h2 className="card-title">{name}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={onClick}>
             {status === TicketStatus.activated ? 'Show' : 'Activate'}
           </button>
         </div>

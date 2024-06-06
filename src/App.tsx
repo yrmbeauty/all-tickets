@@ -4,9 +4,9 @@ import './App.css';
 import { CHAIN, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnect } from './hooks/useTonConnect';
 import { useState } from 'react';
-import { Ticket } from './components/Ticket';
 import { Page, TicketEntity } from './types/types';
-import BuyTickets from './pages/BuyTickets';
+import BrowseTickets from './pages/BrowseTickets';
+import TicketPage from './pages/TicketPage';
 
 function App() {
   const { network } = useTonConnect();
@@ -19,20 +19,16 @@ function App() {
     setTicket(ticket);
   };
 
-  const buyTickets = () => {
-    setPage("buyTickets")
-  }
-
   const CurrentPage = () => {
     switch (page) {
-      case "myTickets":
+      case 'myTickets':
         return <Mytickets openTicket={openTicket} />;
-      case "ticket":
-        return ticket ? <Ticket {...ticket} /> : null;
-      case "buyTickets":
-        return <BuyTickets />;
+      case 'ticket':
+        return ticket ? <TicketPage {...ticket} /> : null;
+      case 'browseTickets':
+        return <BrowseTickets />;
       default:
-        return null
+        return null;
     }
   };
 
@@ -53,15 +49,15 @@ function App() {
       <footer className="flex gap-4 p-2">
         <button
           className={`btn flex-1 btn-info ${page === 'myTickets' ? 'pointer-events-none' : 'btn-outline'}`}
+          onClick={() => setPage('myTickets')}
         >
           My tickets
         </button>
         <button
-          // disabled={page === 'buy'}
-          className="btn flex-1 btn-outline btn-success"
-          // onClick={() => buyTickets()}
+          className={`btn flex-1 btn-info ${page === 'browseTickets' ? 'pointer-events-none' : 'btn-outline'}`}
+          onClick={() => setPage('browseTickets')}
         >
-          Buy ticket
+          Browse tickets
         </button>
       </footer>
     </>

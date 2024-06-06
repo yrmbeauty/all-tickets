@@ -2,10 +2,10 @@ export enum TicketStatus {
   'activated',
   'own'
 }
-export type Page = "myTickets" | "ticket" | "buyTickets"
+export type Page = 'myTickets' | 'ticket' | 'browseTickets';
 
-export type TicketEntity = {
+export interface TicketEntity {
   name: string;
   description: string;
   status: TicketStatus;
-};
+}

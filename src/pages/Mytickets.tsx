@@ -1,9 +1,9 @@
 import { Ticket } from '../components/Ticket';
 import { TicketStatus, TicketEntity } from '../types/types';
 
-type Props = {
-  openTicket: (ticket: TicketEntity) => void
-};
+interface Props {
+  openTicket: (ticket: TicketEntity) => void;
+}
 
 const ticket: TicketEntity = {
   name: 'Ticket',
@@ -11,8 +11,11 @@ const ticket: TicketEntity = {
   status: TicketStatus.activated
 };
 
-const activeTickets = new Array(2).fill(ticket);
-const tickets = new Array(2).fill({ ...ticket, isActive: false });
+const activeTickets = new Array(2).fill(ticket) as TicketEntity[];
+const tickets = new Array(2).fill({
+  ...ticket,
+  isActive: false
+}) as TicketEntity[];
 
 const Mytickets: React.FC<Props> = (props: Props) => {
   const { openTicket } = props;
@@ -20,19 +23,19 @@ const Mytickets: React.FC<Props> = (props: Props) => {
   return (
     <div className="flex flex-col gap-4 flex-1 overflow-auto">
       <div>
-        <h1 className="text-lg">Active</h1>
+        <h1 className="px-10 py-4 text-lg divider">Active</h1>
         <div className="flex gap-4 flex-wrap justify-evenly">
-          {activeTickets.map((ticket) => (
-            <Ticket {...ticket} />
+          {activeTickets.map(ticket => (
+            <Ticket {...ticket} onClick={() => openTicket(ticket)} />
           ))}
         </div>
       </div>
 
       <div>
-        <h1 className="text-lg">List</h1>
+        <h1 className="px-10 py-4 text-lg divider">List</h1>
         <div className="flex gap-4 flex-wrap justify-evenly">
-          {tickets.map((ticket) => (
-            <Ticket {...ticket} />
+          {tickets.map(ticket => (
+            <Ticket {...ticket} onClick={() => openTicket(ticket)} />
           ))}
         </div>
       </div>
